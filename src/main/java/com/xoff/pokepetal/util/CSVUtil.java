@@ -2,55 +2,52 @@ package com.xoff.pokepetal.util;
 
 import com.xoff.pokepetal.business.PokemonBusiness;
 import com.xoff.pokepetal.exception.CSVReaderException;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CSVUtil {
 
+    private static String[] HEADERS = {"#", "Name", "Type 1", "Type 2", "Total", "HP",
+            "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "Generation", "Legendary"};
+
     public static List<PokemonBusiness> loadPokemons(String dataUrl) throws CSVReaderException {
-        List<PokemonBusiness> listPokemonBusiness = new ArrayList<>();
-        BufferedReader buffer = null;
-        String line = "";
-        String csvSplitBy = ",";
-
+        List<PokemonBusiness> listPokemon = new ArrayList<>();
         try {
-            URL url = new URL(dataUrl);
-            URLConnection connection = url.openConnection();
+            final URL url = new URL(dataUrl);
 
-            InputStreamReader input = new InputStreamReader(connection.getInputStream());
 
-            buffer = new BufferedReader(input);
-            while ((line = buffer.readLine()) != null) {
-                String[] room = line.split(csvSplitBy);
-                System.out.println(line);
-                // System.out.println("room [capacity =" + room[0] + " , price=" + room[1]);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+            Iterable<CSVRecord> records = CSVFormat.DEFAULT
+                    .withHeader(HEADERS)
+                    .withFirstRecordAsHeader()
+                    .parse(reader);
+            System.out.println("loadPokemons" + records);
+            for (CSVRecord record : records) {
+                String id = record.get(HEADERS[0]);
+                String name = record.get(HEADERS[1]);
+                System.out.println(" " + id + " " + name);
+
+                PokemonBusiness pokemonBusiness = new PokemonBusiness();
+                pokemonBusiness.setId(Long.parseLong(id));
+                pokemonBusiness.setName(name
+                );
+                listPokemon.add(pokemonBusiness);
             }
-        } catch (MalformedURLException e) {
-            throw new CSVReaderException("CSVUtil: malformation URL " + dataUrl + " " + e.getMessage());
-
-        } catch (FileNotFoundException e) {
-            throw new CSVReaderException("CSVUtil: fichier introuvable a " + dataUrl + " " + e.getMessage());
-        } catch (IOException e) {
-            throw new CSVReaderException("CSVUtil: IOException lecture a " + dataUrl + " " + e.getMessage());
-        } finally {
-            if (buffer != null) {
-                try {
-                    buffer.close();
-                } catch (IOException e) {
-                    throw new CSVReaderException("CSVUtil: IOException fermeture a " + dataUrl + " " + e.getMessage());
-                }
-            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new CSVReaderException(e.getMessage());
         }
-
-        return listPokemonBusiness;
+        return listPokemon;
 
     }
 }

@@ -9,19 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class PokePetalServiceImpl  implements PokePetalService {
+public class PokePetalServiceImpl implements PokePetalService {
 
     @Autowired
     private PokePetalRepository pokePetalRepository;
 
     @Transactional
-    public Pokemon save(Pokemon pokemon){
+    public Pokemon save(Pokemon pokemon) {
 
         return pokePetalRepository.saveAndFlush(pokemon);
     }
 
     @Transactional
-    public List<Pokemon> saveAll (List<Pokemon> listPokemon){
-        return listPokemon;
+    public List<Pokemon> saveAll(List<Pokemon> listPokemon) {
+
+        return pokePetalRepository.saveAll(listPokemon);
+
     }
 }

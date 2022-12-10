@@ -1,14 +1,15 @@
 package com.xoff.pokepetal.business;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Data
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
 public class PokemonBusiness {
 
+    private Long id;
     private String name;
     private String type1;
     private String type2;
@@ -24,5 +25,4 @@ public class PokemonBusiness {
     private int speed;
     private int generation;
     private boolean legendary;
-
 }
