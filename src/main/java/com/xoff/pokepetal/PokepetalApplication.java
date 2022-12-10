@@ -1,6 +1,8 @@
 package com.xoff.pokepetal;
 
+import com.xoff.pokepetal.model.Pokemon;
 import com.xoff.pokepetal.service.PokePetalService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,5 +28,9 @@ public class PokepetalApplication {
 	@EventListener(ApplicationReadyEvent.class)
 	public void initializeDatabaseAfterStartup() {
 		log.info("hello world, I have just started up"+dataUrl);
+
+		Pokemon p=new Pokemon();
+		p.setContent("go");
+		pokePetalService.save(p);
 	}
 }
