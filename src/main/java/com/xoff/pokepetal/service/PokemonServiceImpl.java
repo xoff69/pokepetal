@@ -19,7 +19,11 @@ public class PokemonServiceImpl implements PokemonService {
 
         return pokemonRepository.saveAndFlush(pokemon);
     }
+    public List<Pokemon> getAll()
+    {
 
+        return pokemonRepository.findAll();
+    }
     @Transactional
     public List<Pokemon> saveAll(List<Pokemon> listPokemon) {
 
