@@ -36,9 +36,9 @@ public class PokemonServiceImpl implements PokemonService {
     public PokemonDto findPokemonById(Long id) throws BusinessException {
         Optional<Pokemon> pokemonFound = pokemonRepository.findById(id);
         if (Boolean.FALSE.equals(pokemonFound.isPresent())) {
-            throw new BusinessException("Pokemon Not Found", "Aucun Pokemon avec l'identifiant :" + id);
-        }
-        return PokemonMapper.INSTANCE.pokemon2PokemonDto(pokemonFound.get());
+           return null;
+        }else{
+        return PokemonMapper.INSTANCE.pokemon2PokemonDto(pokemonFound.get());}
     }
 
     @Transactional

@@ -55,8 +55,17 @@ public class PokemonController {
 
     @GetMapping(value = "/pokemons/{id}")
     public ResponseEntity<PokemonDto> findPokemonById(@PathVariable(value = "id") Long id) {
-        PokemonDto pokemonDtoFound = pokemonService.findPokemonById(id);
-        return new ResponseEntity<PokemonDto>(pokemonDtoFound, HttpStatus.FOUND);
+
+            PokemonDto pokemonDtoFound = pokemonService.findPokemonById(id);
+            if (pokemonDtoFound!=null) {
+
+                return new ResponseEntity<PokemonDto>(pokemonDtoFound, HttpStatus.FOUND);
+            }
+            else {
+                return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+            }
+
+
     }
 
     @DeleteMapping(value = "/pokemons/{id}")

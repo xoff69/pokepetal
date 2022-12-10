@@ -26,7 +26,7 @@ public class PokemonControllerTest {
 
 
     @Test
-    public void testfindOne() throws Exception {
+    public void testGetByID() throws Exception {
         long idPokemon=23;
 
         PokemonDto pokemon = new PokemonDto();
@@ -37,8 +37,11 @@ public class PokemonControllerTest {
 
         Mockito.when(pokemonService.findPokemonById(idPokemon)).thenReturn(pokemon);
 
-        mockMvc.perform(get("/pokemons/23"))
+        mockMvc.perform(get("/pokemons/"+idPokemon))
                 .andExpect(status().isFound()).andExpect(content().string(containsString("Bob")));
+
+        mockMvc.perform(get("/pokemons/"+(idPokemon+1)))
+                .andExpect(status().isNotFound());
     }
 
 
