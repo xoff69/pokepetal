@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "29b4f1a7-3cd2-4e04-a333-093378267c4f",
+		"name": "PP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getPokemonsWithPagination",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "getPokemonByID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "deletePokemon",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "updatePokemon",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "{",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "\"id\"",
+							"value": " 17,",
+							"type": "text"
+						},
+						{
+							"key": "\"name\"",
+							"value": " \"Gribouille\",",
+							"type": "text"
+						},
+						{
+							"key": "\"type1\"",
+							"value": " \"TYPE1_updated\",",
+							"type": "text"
+						},
+						{
+							"key": "\"type2\"",
+							"value": " \"TYPE2_updated\",",
+							"type": "text"
+						},
+						{
+							"key": "\"total\"",
+							"value": " 1000,",
+							"type": "text"
+						},
+						{
+							"key": "\"hp\"",
+							"value": " 1001,",
+							"type": "text"
+						},
+						{
+							"key": "\"attack\"",
+							"value": " 1002,",
+							"type": "text"
+						},
+						{
+							"key": "\"defense\"",
+							"value": " 1003,",
+							"type": "text"
+						},
+						{
+							"key": "\"soAtk\"",
+							"value": " 1004,",
+							"type": "text"
+						},
+						{
+							"key": "\"spDef\"",
+							"value": " 1005,",
+							"type": "text"
+						},
+						{
+							"key": "\"speed\"",
+							"value": " 1006,",
+							"type": "text"
+						},
+						{
+							"key": "\"generation\"",
+							"value": " 1007,",
+							"type": "text"
+						},
+						{
+							"key": "\"legendary\"",
+							"value": " true",
+							"type": "text"
+						},
+						{
+							"key": "}",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/pokemons/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pokemons",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPokemon",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

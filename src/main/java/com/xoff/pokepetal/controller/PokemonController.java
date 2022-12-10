@@ -58,7 +58,6 @@ public class PokemonController {
 
             PokemonDto pokemonDtoFound = pokemonService.findPokemonById(id);
             if (pokemonDtoFound!=null) {
-
                 return new ResponseEntity<PokemonDto>(pokemonDtoFound, HttpStatus.FOUND);
             }
             else {
@@ -71,8 +70,12 @@ public class PokemonController {
     @DeleteMapping(value = "/pokemons/{id}")
     public ResponseEntity<Void> deletePokemon(@PathVariable Long id) {
 
-        pokemonService.deletePokemon(id);
-        return new ResponseEntity<Void>(HttpStatus.GONE);
+        if (pokemonService.deletePokemon(id)) {
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        else {
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
     }
 }
 

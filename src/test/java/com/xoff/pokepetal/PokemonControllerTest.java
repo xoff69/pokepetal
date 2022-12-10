@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 @WebMvcTest(PokemonController.class)
@@ -43,6 +44,23 @@ public class PokemonControllerTest {
         mockMvc.perform(get("/pokemons/"+(idPokemon+1)))
                 .andExpect(status().isNotFound());
     }
+    @Test
+    public void testDelete() throws Exception {
+        long idPokemon=23;
 
+        PokemonDto pokemon = new PokemonDto();
+        pokemon.setId(idPokemon);
+        pokemon.setName("Bob");
+        pokemon.setType1("t1");
+        pokemon.setType2("t2");
+
+        Mockito.when(pokemonService.deletePokemon(idPokemon)).thenReturn(true);
+
+        mockMvc.perform(delete("/pokemons/"+idPokemon))
+                .andExpect(status().isNoContent());
+
+        mockMvc.perform(get("/pokemons/"+(idPokemon+1)))
+                .andExpect(status().isNotFound());
+    }
 
 }

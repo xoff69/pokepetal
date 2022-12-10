@@ -5,7 +5,16 @@ Hypotheses et remarques:
 - l'url est stockee dans le fichier application.yml
 - construit avec springboot 3.0 et java 19
 - J'ai utilise le pattern DTO pour les pokemon
+- Le repertoire postman contient mes tests postman realises sur l url localhost
 
+VERBES:
+- GET  http://localhost:8080/pokemons/id : cherche un pokemon par id, 302 si trouve, 404 sinon
+- 
+
+Tests unitaires en place:
+- Application: controller non null
+- Test controller:
+  - GET par identifiant trouve/non trouve
 
 RAPPEL DES INSTRUCTIONS:
 
