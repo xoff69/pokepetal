@@ -1,16 +1,18 @@
 package com.xoff.pokepetal.repository;
 
 import com.xoff.pokepetal.model.Pokemon;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
 
     @Override
-    List<Pokemon> findAll();
+    Page<Pokemon> findAll(Pageable pageable);
 
     @Override
-    Pokemon saveAndFlush(Pokemon entity);
+    Pokemon save(Pokemon entity);
 
+    @Override
+    void deleteById(Long aLong);
 }

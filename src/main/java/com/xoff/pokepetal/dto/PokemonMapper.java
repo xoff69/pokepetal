@@ -10,9 +10,11 @@ import java.util.List;
 public interface PokemonMapper {
     PokemonMapper INSTANCE = Mappers.getMapper(PokemonMapper.class);
 
-    PokemonDto pokemon2PokemonBusiness(Pokemon pokemon);
+    PokemonDto pokemon2PokemonDto(Pokemon pokemon);
 
-    List<Pokemon> map(List<PokemonDto> employees);
+    List<Pokemon> mapListDto2Entity(List<PokemonDto> pokemonsDto);
 
-    Pokemon pokemonBusiness2Pokemon(PokemonDto pokemonBusiness);
+    Pokemon pokemonDto2Pokemon(PokemonDto pokemonDto);
+
+    List<PokemonDto> mapListEntity2Dto(List<Pokemon> pokemons);
 }

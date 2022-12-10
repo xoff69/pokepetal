@@ -1,6 +1,7 @@
 package com.xoff.pokepetal.dto;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor

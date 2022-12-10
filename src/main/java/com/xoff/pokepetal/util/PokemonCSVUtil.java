@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PokemonCSVUtil {
 
-    private static String[] HEADERS = {"#", "Name", "Type 1", "Type 2", "Total", "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "Generation", "Legendary"};
+    private static final String[] HEADERS = {"#", "Name", "Type 1", "Type 2", "Total", "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "Generation", "Legendary"};
 
     public static List<PokemonDto> loadListPokemonsFromCSVUrl(String dataUrl) throws PokemonCSVReaderException {
         List<PokemonDto> listPokemon = new ArrayList<>();

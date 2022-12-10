@@ -1,9 +1,10 @@
 # Projet Pokemons pour Petal
 
-Hypotheses:
+Hypotheses et remarques:
 - j'ai considere qu'il fallait lire les donnees systematiquement sur l'url du fichier csv et non pas mettre dans l 'application le fichier csv
 - l'url est stockee dans le fichier application.yml
 - construit avec springboot 3.0 et java 19
+- J'ai utilise le pattern DTO pour les pokemon
 
 
 RAPPEL DES INSTRUCTIONS:
