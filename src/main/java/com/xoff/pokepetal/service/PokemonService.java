@@ -9,7 +9,9 @@ import java.util.List;
 public interface PokemonService {
 
 
-    PokemonDto saveOrUpdate(PokemonDto pokemonDto) ;
+    PokemonDto create(PokemonDto pokemonDto) ;
+
+    PokemonDto update(Long id,PokemonDto pokemonDto) ;
 
     PagePokemonDto findAll(Pageable paging);
 

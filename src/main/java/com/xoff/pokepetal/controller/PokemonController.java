@@ -22,7 +22,7 @@ public class PokemonController {
     @GetMapping("/pokemons")
     public ResponseEntity<Map<String, Object>> getAllPokemons(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
 
-        try {
+
 
             Pageable paging = PageRequest.of(page, size);
             PagePokemonDto pagePokemonsDto = pokemonService.findAll(paging);
@@ -34,22 +34,20 @@ public class PokemonController {
             response.put("totalPages", pagePokemonsDto.getTotalPages());
 
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
     }
 
-    @PostMapping(value = "/pokemons")
-    public ResponseEntity<PokemonDto> savePokemon(@RequestBody PokemonDto pokemonDto) {
-
-        PokemonDto pokemonDtoSaved = pokemonService.saveOrUpdate(pokemonDto);
+    @PostMapping( "/pokemons")
+    public ResponseEntity<PokemonDto> createPokemon(@RequestBody PokemonDto pokemonDto) {
+   //    si l'i
+        PokemonDto pokemonDtoSaved = pokemonService.create(pokemonDto);
         return new ResponseEntity<PokemonDto>(pokemonDtoSaved, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/pokemons")
-    public ResponseEntity<PokemonDto> updatePokemon(@RequestBody PokemonDto pokemonDto) {
-
-        PokemonDto pokemonDtoUpdated = pokemonService.saveOrUpdate(pokemonDto);
+    @PutMapping(value = "/pokemons/{id}")
+    public ResponseEntity<PokemonDto> updatePokemon(@RequestBody PokemonDto pokemonDto, @PathVariable Long id) {
+//@todo cas du update si ca existait pas
+        PokemonDto pokemonDtoUpdated = pokemonService.update(id,pokemonDto);
         return new ResponseEntity<PokemonDto>(pokemonDtoUpdated, HttpStatus.OK);
     }
 

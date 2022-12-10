@@ -9,12 +9,19 @@ Hypotheses et remarques:
 
 VERBES:
 - GET  http://localhost:8080/pokemons/id : cherche un pokemon par id, 302 si trouve, 404 sinon
-- 
+- GET  http://localhost:8080/pokemons/id : 
+- DELETE  http://localhost:8080/pokemons/id : efface un pokemon sur son id, 204 si trouve (no content),404 sinon
+- POST 
+- PUT
 
 Tests unitaires en place:
 - Application: controller non null
 - Test controller:
   - GET par identifiant trouve/non trouve
+  - GET de tous les pokemons pagines
+  - POST cree un pokemon et Put update
+  - DELETE efface un pokemon
+- CSV reader
 
 RAPPEL DES INSTRUCTIONS:
 

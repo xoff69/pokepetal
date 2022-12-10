@@ -22,7 +22,6 @@ public class PokemonCSVUtil {
         try {
             final URL url = new URL(dataUrl);
 
-
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
