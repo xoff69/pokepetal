@@ -1,5 +1,12 @@
 package com.xoff.pokepetal.business;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class PokemonBusiness {
 
     private String name;
