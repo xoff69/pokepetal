@@ -11,8 +11,8 @@ public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
     Page<Pokemon> findAll(Pageable pageable);
 
     @Override
-    Pokemon save(Pokemon entity);
+    Pokemon save(Pokemon pokemon);
 
     @Override
-    void deleteById(Long aLong);
+    void deleteById(Long id);
 }

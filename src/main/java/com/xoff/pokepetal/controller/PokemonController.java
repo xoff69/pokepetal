@@ -59,8 +59,8 @@ public class PokemonController {
         return new ResponseEntity<PokemonDto>(pokemonDtoFound, HttpStatus.FOUND);
     }
 
-    @DeleteMapping(value = "/pokemons")
-    public ResponseEntity<Void> deletePokemon(@RequestParam(value = "id", required = true) Long id) {
+    @DeleteMapping(value = "/pokemons/{id}")
+    public ResponseEntity<Void> deletePokemon(@PathVariable Long id) {
 
         pokemonService.deletePokemon(id);
         return new ResponseEntity<Void>(HttpStatus.GONE);

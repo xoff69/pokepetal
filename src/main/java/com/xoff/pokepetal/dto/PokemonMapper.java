@@ -12,7 +12,7 @@ public interface PokemonMapper {
 
     PokemonDto pokemon2PokemonDto(Pokemon pokemon);
 
-    List<Pokemon> mapListDto2Entity(List<PokemonDto> pokemonsDto);
+    List<Pokemon> map(List<PokemonDto> pokemonsDto);
 
     Pokemon pokemonDto2Pokemon(PokemonDto pokemonDto);
 

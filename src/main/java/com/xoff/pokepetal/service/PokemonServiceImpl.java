@@ -29,7 +29,7 @@ public class PokemonServiceImpl implements PokemonService {
     @Transactional
     @Override
     public List<PokemonDto> saveAll(List<PokemonDto> listPokemonDto) {
-        return PokemonMapper.INSTANCE.mapListEntity2Dto(pokemonRepository.saveAll(PokemonMapper.INSTANCE.mapListDto2Entity(listPokemonDto)));
+        return PokemonMapper.INSTANCE.mapListEntity2Dto(pokemonRepository.saveAll(PokemonMapper.INSTANCE.map(listPokemonDto)));
     }
 
     @Override

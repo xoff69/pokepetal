@@ -2,6 +2,7 @@ package com.xoff.pokepetal.util;
 
 import com.xoff.pokepetal.dto.PokemonDto;
 import com.xoff.pokepetal.exception.PokemonCSVReaderException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -11,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
+@Slf4j
 public class PokemonCSVUtil {
 
     private static final String[] HEADERS = {"#", "Name", "Type 1", "Type 2", "Total", "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "Generation", "Legendary"};
@@ -29,22 +30,22 @@ public class PokemonCSVUtil {
 
             for (CSVRecord record : records) {
 
-                PokemonDto pokemonBusiness = new PokemonDto();
-                pokemonBusiness.setId(Long.parseLong(record.get(HEADERS[0])));
-                pokemonBusiness.setName(record.get(HEADERS[1]));
-                pokemonBusiness.setType1(record.get(HEADERS[2]));
-                pokemonBusiness.setType2(record.get(HEADERS[3]));
-                pokemonBusiness.setTotal(Integer.parseInt(record.get(HEADERS[4])));
-                pokemonBusiness.setHp(Integer.parseInt(record.get(HEADERS[5])));
-                pokemonBusiness.setAttack(Integer.parseInt(record.get(HEADERS[6])));
-                pokemonBusiness.setDefense(Integer.parseInt(record.get(HEADERS[7])));
-                pokemonBusiness.setSoAtk(Integer.parseInt(record.get(HEADERS[8])));
-                pokemonBusiness.setSpDef(Integer.parseInt(record.get(HEADERS[9])));
-                pokemonBusiness.setSpeed(Integer.parseInt(record.get(HEADERS[10])));
-                pokemonBusiness.setGeneration(Integer.parseInt(record.get(HEADERS[11])));
-                pokemonBusiness.setLegendary(Boolean.parseBoolean(record.get(HEADERS[12])));
+                PokemonDto pokemonDto = new PokemonDto();
+                pokemonDto.setId(Long.parseLong(record.get(HEADERS[0])));
+                pokemonDto.setName(record.get(HEADERS[1]));
+                pokemonDto.setType1(record.get(HEADERS[2]));
+                pokemonDto.setType2(record.get(HEADERS[3]));
+                pokemonDto.setTotal(Integer.parseInt(record.get(HEADERS[4])));
+                pokemonDto.setHp(Integer.parseInt(record.get(HEADERS[5])));
+                pokemonDto.setAttack(Integer.parseInt(record.get(HEADERS[6])));
+                pokemonDto.setDefense(Integer.parseInt(record.get(HEADERS[7])));
+                pokemonDto.setSoAtk(Integer.parseInt(record.get(HEADERS[8])));
+                pokemonDto.setSpDef(Integer.parseInt(record.get(HEADERS[9])));
+                pokemonDto.setSpeed(Integer.parseInt(record.get(HEADERS[10])));
+                pokemonDto.setGeneration(Integer.parseInt(record.get(HEADERS[11])));
+                pokemonDto.setLegendary(Boolean.parseBoolean(record.get(HEADERS[12])));
 
-                listPokemon.add(pokemonBusiness);
+                listPokemon.add(pokemonDto);
             }
             reader.close();
         } catch (Exception e) {
