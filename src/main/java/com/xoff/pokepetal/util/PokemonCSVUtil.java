@@ -1,7 +1,7 @@
 package com.xoff.pokepetal.util;
 
 import com.xoff.pokepetal.dto.PokemonDto;
-import com.xoff.pokepetal.exception.CSVReaderException;
+import com.xoff.pokepetal.exception.PokemonCSVReaderException;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -16,7 +16,7 @@ public class PokemonCSVUtil {
 
     private static String[] HEADERS = {"#", "Name", "Type 1", "Type 2", "Total", "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "Generation", "Legendary"};
 
-    public static List<PokemonDto> loadListPokemonsFromCSVUrl(String dataUrl) throws CSVReaderException {
+    public static List<PokemonDto> loadListPokemonsFromCSVUrl(String dataUrl) throws PokemonCSVReaderException {
         List<PokemonDto> listPokemon = new ArrayList<>();
         try {
             final URL url = new URL(dataUrl);
@@ -49,7 +49,7 @@ public class PokemonCSVUtil {
             reader.close();
         } catch (Exception e) {
 
-            throw new CSVReaderException(e.getMessage());
+            throw new PokemonCSVReaderException(e.getMessage());
         }
         return listPokemon;
 

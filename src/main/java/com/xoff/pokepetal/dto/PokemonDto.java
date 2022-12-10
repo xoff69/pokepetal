@@ -4,10 +4,6 @@ import lombok.*;
 
 @Data
 @NoArgsConstructor
-@Getter
-@Setter
-@AllArgsConstructor
-@ToString
 public class PokemonDto {
     private Long id;
     private String name;

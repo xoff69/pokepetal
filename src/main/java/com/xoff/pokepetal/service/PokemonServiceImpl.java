@@ -1,7 +1,7 @@
 package com.xoff.pokepetal.service;
 
 import com.xoff.pokepetal.model.Pokemon;
-import com.xoff.pokepetal.repository.PokePetalRepository;
+import com.xoff.pokepetal.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,21 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class PokePetalServiceImpl implements PokePetalService {
+public class PokemonServiceImpl implements PokemonService {
 
     @Autowired
-    private PokePetalRepository pokePetalRepository;
+    private PokemonRepository pokemonRepository;
 
     @Transactional
     public Pokemon save(Pokemon pokemon) {
 
-        return pokePetalRepository.saveAndFlush(pokemon);
+        return pokemonRepository.saveAndFlush(pokemon);
     }
 
     @Transactional
     public List<Pokemon> saveAll(List<Pokemon> listPokemon) {
 
-        return pokePetalRepository.saveAll(listPokemon);
+        return pokemonRepository.saveAll(listPokemon);
 
     }
 }
