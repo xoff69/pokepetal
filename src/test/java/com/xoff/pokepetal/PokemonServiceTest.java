@@ -14,22 +14,23 @@ public class PokemonServiceTest {
 
     @Autowired
     PokemonRepository pokemonRepository;
+
     @Test
     public void testCreateFindUpdateDeleteFind() {
 
-        Pokemon pokemon =new Pokemon();
+        Pokemon pokemon = new Pokemon();
         pokemon.setName("Albert");
-        pokemon= pokemonRepository.save(pokemon);
-        Assertions.assertThat(pokemon.getId()!=null);
-        Assertions.assertThat(pokemonRepository.findById(pokemon.getId())!=null);
-pokemon.setName("Alberto");
-        pokemon= pokemonRepository.save(pokemon);
+        pokemon = pokemonRepository.save(pokemon);
+        Assertions.assertThat(pokemon.getId() != null);
+        Assertions.assertThat(pokemonRepository.findById(pokemon.getId()) != null);
+        pokemon.setName("Alberto");
+        pokemon = pokemonRepository.save(pokemon);
         Assertions.assertThat("Alberto".equals(pokemon.getName()));
 
         Pageable paging = PageRequest.of(5, 20);
 
-        Assertions.assertThat(pokemonRepository.findAll(paging).getContent().size()==1);
+        Assertions.assertThat(pokemonRepository.findAll(paging).getContent().size() == 1);
         pokemonRepository.deleteById(pokemon.getId());
-        Assertions.assertThat(pokemonRepository.findAll(paging).getContent().size()==0);
+        Assertions.assertThat(pokemonRepository.findAll(paging).getContent().size() == 0);
     }
 }

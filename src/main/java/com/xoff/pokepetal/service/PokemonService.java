@@ -9,9 +9,9 @@ import java.util.List;
 public interface PokemonService {
 
 
-    PokemonDto create(PokemonDto pokemonDto) ;
+    PokemonDto create(PokemonDto pokemonDto);
 
-    PokemonDto update(Long id,PokemonDto pokemonDto) ;
+    PokemonDto update(Long id, PokemonDto pokemonDto);
 
     PagePokemonDto findAll(Pageable paging);
 
@@ -19,5 +19,5 @@ public interface PokemonService {
 
     PokemonDto findPokemonById(Long id);
 
-    boolean deletePokemon(Long id) ;
+    boolean deletePokemon(Long id);
 }

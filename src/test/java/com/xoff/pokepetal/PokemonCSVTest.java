@@ -18,14 +18,13 @@ public class PokemonCSVTest {
 
     @Test
     public void testCSV() throws Exception {
-        List<PokemonDto> listPokemonDto=PokemonCSVUtil.loadListPokemonsFromCSVUrl(dataUrl);
-        Assertions.assertThat(listPokemonDto!=null);
-        Assertions.assertThat(listPokemonDto.size()>0);
-        Assertions.assertThat(listPokemonDto.get(0).getName()!=null);
+        List<PokemonDto> listPokemonDto = PokemonCSVUtil.loadListPokemonsFromCSVUrl(dataUrl);
+        Assertions.assertThat(listPokemonDto != null);
+        Assertions.assertThat(listPokemonDto.size() > 0);
+        Assertions.assertThat(listPokemonDto.get(0).getName() != null);
 
 
-
-       Assertions.assertThatExceptionOfType(PokemonCSVReaderException.class).isThrownBy(() -> {
+        Assertions.assertThatExceptionOfType(PokemonCSVReaderException.class).isThrownBy(() -> {
             PokemonCSVUtil.loadListPokemonsFromCSVUrl("http://www.yahoo.fr");
         });
 

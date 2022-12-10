@@ -23,44 +23,48 @@ public class PokemonController {
     public ResponseEntity<Map<String, Object>> getAllPokemons(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
 
 
+        Pageable paging = PageRequest.of(page, size);
+        PagePokemonDto pagePokemonsDto = pokemonService.findAll(paging);
 
-            Pageable paging = PageRequest.of(page, size);
-            PagePokemonDto pagePokemonsDto = pokemonService.findAll(paging);
+        Map<String, Object> response = new HashMap<>();
+        response.put("pokemons", pagePokemonsDto.getListPokemonsDto());
+        response.put("currentPage", pagePokemonsDto.getNumber());
+        response.put("totalItems", pagePokemonsDto.getTotalElements());
+        response.put("totalPages", pagePokemonsDto.getTotalPages());
 
-            Map<String, Object> response = new HashMap<>();
-            response.put("pokemons", pagePokemonsDto.getListPokemonsDto());
-            response.put("currentPage", pagePokemonsDto.getNumber());
-            response.put("totalItems", pagePokemonsDto.getTotalElements());
-            response.put("totalPages", pagePokemonsDto.getTotalPages());
-
-            return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
 
-    @PostMapping( "/pokemons")
+    @PostMapping("/pokemons")
     public ResponseEntity<PokemonDto> createPokemon(@RequestBody PokemonDto pokemonDto) {
-   //    si l'i
-        PokemonDto pokemonDtoSaved = pokemonService.create(pokemonDto);
-        return new ResponseEntity<PokemonDto>(pokemonDtoSaved, HttpStatus.CREATED);
+        if (pokemonDto.getId() == null || pokemonDto.getId() == 0) {
+            PokemonDto pokemonDtoSaved = pokemonService.create(pokemonDto);
+            return new ResponseEntity<PokemonDto>(pokemonDtoSaved, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping(value = "/pokemons/{id}")
     public ResponseEntity<PokemonDto> updatePokemon(@RequestBody PokemonDto pokemonDto, @PathVariable Long id) {
-//@todo cas du update si ca existait pas
-        PokemonDto pokemonDtoUpdated = pokemonService.update(id,pokemonDto);
-        return new ResponseEntity<PokemonDto>(pokemonDtoUpdated, HttpStatus.OK);
+        PokemonDto pokemonDtoUpdated = pokemonService.update(id, pokemonDto);
+        if (pokemonDtoUpdated != null) {
+            return new ResponseEntity<PokemonDto>(pokemonDtoUpdated, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<PokemonDto>(pokemonDtoUpdated, HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(value = "/pokemons/{id}")
     public ResponseEntity<PokemonDto> findPokemonById(@PathVariable(value = "id") Long id) {
 
-            PokemonDto pokemonDtoFound = pokemonService.findPokemonById(id);
-            if (pokemonDtoFound!=null) {
-                return new ResponseEntity<PokemonDto>(pokemonDtoFound, HttpStatus.FOUND);
-            }
-            else {
-                return new ResponseEntity<>( HttpStatus.NOT_FOUND);
-            }
+        PokemonDto pokemonDtoFound = pokemonService.findPokemonById(id);
+        if (pokemonDtoFound != null) {
+            return new ResponseEntity<PokemonDto>(pokemonDtoFound, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
 
     }
@@ -70,9 +74,8 @@ public class PokemonController {
 
         if (pokemonService.deletePokemon(id)) {
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-        }
-        else {
-            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

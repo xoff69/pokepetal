@@ -10,12 +10,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class PokepetalApplicationTests {
 
-	@Autowired
-	PokemonController pokemonController;
+    @Autowired
+    PokemonController pokemonController;
 
-	@Test
-	void contextLoads() {
-		Assertions.assertThat(pokemonController).isNotNull();
-	}
+    @Test
+    void contextLoads() {
+        Assertions.assertThat(pokemonController).isNotNull();
+    }
 
 }

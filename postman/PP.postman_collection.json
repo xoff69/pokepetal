@@ -30,92 +30,44 @@
 			"response": []
 		},
 		{
-			"name": "updatePokemon",
+			"name": "createPokemon",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "{",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "\"id\"",
-							"value": " 17,",
-							"type": "text"
-						},
-						{
-							"key": "\"name\"",
-							"value": " \"Gribouille\",",
-							"type": "text"
-						},
-						{
-							"key": "\"type1\"",
-							"value": " \"TYPE1_updated\",",
-							"type": "text"
-						},
-						{
-							"key": "\"type2\"",
-							"value": " \"TYPE2_updated\",",
-							"type": "text"
-						},
-						{
-							"key": "\"total\"",
-							"value": " 1000,",
-							"type": "text"
-						},
-						{
-							"key": "\"hp\"",
-							"value": " 1001,",
-							"type": "text"
-						},
-						{
-							"key": "\"attack\"",
-							"value": " 1002,",
-							"type": "text"
-						},
-						{
-							"key": "\"defense\"",
-							"value": " 1003,",
-							"type": "text"
-						},
-						{
-							"key": "\"soAtk\"",
-							"value": " 1004,",
-							"type": "text"
-						},
-						{
-							"key": "\"spDef\"",
-							"value": " 1005,",
-							"type": "text"
-						},
-						{
-							"key": "\"speed\"",
-							"value": " 1006,",
-							"type": "text"
-						},
-						{
-							"key": "\"generation\"",
-							"value": " 1007,",
-							"type": "text"
-						},
-						{
-							"key": "\"legendary\"",
-							"value": " true",
-							"type": "text"
-						},
-						{
-							"key": "}",
-							"value": "",
-							"type": "text"
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"nouveau pokemon\",\r\n    \"type1\": \"Normal\",\r\n    \"type2\": \"Flying\",\r\n    \"total\": 262,\r\n    \"hp\": 40,\r\n    \"attack\": 60,\r\n    \"defense\": 30,\r\n    \"soAtk\": 31,\r\n    \"spDef\": 31,\r\n    \"speed\": 70,\r\n    \"generation\": 1,\r\n    \"legendary\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					]
+					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/pokemons/",
+					"raw": "http://localhost:8080/pokemons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pokemons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePokemon",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Spearow\",\r\n    \"type1\": \"Normal\",\r\n    \"type2\": \"Flying\",\r\n    \"total\": 262,\r\n    \"hp\": 40,\r\n    \"attack\": 60,\r\n    \"defense\": 30,\r\n    \"soAtk\": 31,\r\n    \"spDef\": 31,\r\n    \"speed\": 70,\r\n    \"generation\": 1,\r\n    \"legendary\": false\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/pokemons/21",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -123,17 +75,9 @@
 					"port": "8080",
 					"path": [
 						"pokemons",
-						""
+						"21"
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "createPokemon",
-			"request": {
-				"method": "GET",
-				"header": []
 			},
 			"response": []
 		}

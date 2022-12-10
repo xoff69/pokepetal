@@ -44,40 +44,40 @@ public class PokemonServiceImpl implements PokemonService {
     @Override
     public boolean deletePokemon(Long id) {
 
-            PokemonDto pokemonDto=findPokemonById(id);
-            if (pokemonDto!=null) {
-                pokemonRepository.deleteById(id);
-                return true;
-            }else{
-                return false;
-            }
+        PokemonDto pokemonDto = findPokemonById(id);
+        if (pokemonDto != null) {
+            pokemonRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
-       @Transactional
+    @Transactional
     @Override
     public PokemonDto create(PokemonDto pokemonDto) {
         Pokemon pokemonToSave = PokemonMapper.INSTANCE.pokemonDto2Pokemon(pokemonDto);
 
-            Pokemon pokemonSaved = pokemonRepository.save(pokemonToSave);
-            return PokemonMapper.INSTANCE.pokemon2PokemonDto(pokemonSaved);
-        }
-
+        Pokemon pokemonSaved = pokemonRepository.saveAndFlush(pokemonToSave);
+        return PokemonMapper.INSTANCE.pokemon2PokemonDto(pokemonSaved);
+    }
 
 
     @Transactional
     @Override
-    public PokemonDto update(Long id,PokemonDto pokemonDto) {
-        Optional<Pokemon> pokemonToUpdate = pokemonRepository.findById(id);
-        if (!pokemonToUpdate.isPresent()){
+    public PokemonDto update(Long id, PokemonDto pokemonDto) {
+        PokemonDto pokemonToUpdate = findPokemonById(id);
+        if (pokemonToUpdate == null) {
             return null;
         }
         Pokemon pokemonToSave = PokemonMapper.INSTANCE.pokemonDto2Pokemon(pokemonDto);
         pokemonToSave.setId(id);
-        Pokemon pokemonSaved = pokemonRepository.save(pokemonToSave);
+        Pokemon pokemonSaved = pokemonRepository.saveAndFlush(pokemonToSave);
         return PokemonMapper.INSTANCE.pokemon2PokemonDto(pokemonSaved);
 
     }
+
     public PagePokemonDto findAll(Pageable paging) {
         Page<Pokemon> pagePokemon = pokemonRepository.findAll(paging);
         PagePokemonDto pagePokemonDto = PageMapper.INSTANCE.page2PageDto(pagePokemon);
