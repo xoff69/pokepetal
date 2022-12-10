@@ -1,4 +1,4 @@
-package com.xoff.pokepetal.business;
+package com.xoff.pokepetal.dto;
 
 import com.xoff.pokepetal.model.Pokemon;
 import org.mapstruct.Mapper;
@@ -10,9 +10,9 @@ import java.util.List;
 public interface PokemonMapper {
     PokemonMapper INSTANCE = Mappers.getMapper(PokemonMapper.class);
 
-    PokemonBusiness pokemon2PokemonBusiness(Pokemon pokemon);
+    PokemonDto pokemon2PokemonBusiness(Pokemon pokemon);
 
-    List<Pokemon> map(List<PokemonBusiness> employees);
+    List<Pokemon> map(List<PokemonDto> employees);
 
-    Pokemon pokemonBusiness2Pokemon(PokemonBusiness pokemonBusiness);
+    Pokemon pokemonBusiness2Pokemon(PokemonDto pokemonBusiness);
 }

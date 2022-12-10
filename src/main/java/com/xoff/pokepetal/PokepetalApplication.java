@@ -1,9 +1,9 @@
 package com.xoff.pokepetal;
 
-import com.xoff.pokepetal.business.PokemonMapper;
+import com.xoff.pokepetal.dto.PokemonMapper;
 import com.xoff.pokepetal.exception.CSVReaderException;
 import com.xoff.pokepetal.service.PokePetalService;
-import com.xoff.pokepetal.util.CSVUtil;
+import com.xoff.pokepetal.util.PokemonCSVUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +32,7 @@ public class PokepetalApplication {
         log.info("Importation des donnees du fichier csv a l'url:" + dataUrl);
         try {
 
-            pokePetalService.saveAll(PokemonMapper.INSTANCE.map(CSVUtil.loadPokemons(dataUrl)));
+            pokePetalService.saveAll(PokemonMapper.INSTANCE.map(PokemonCSVUtil.loadListPokemonsFromCSVUrl(dataUrl)));
             log.info("Importation reussie");
         } catch (CSVReaderException e) {
             log.error("Erreur de recuperation des donnees du fichier CSV, le traitement continue, erreur non bloquante");

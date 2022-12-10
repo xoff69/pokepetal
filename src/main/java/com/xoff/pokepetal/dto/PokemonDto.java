@@ -1,4 +1,4 @@
-package com.xoff.pokepetal.business;
+package com.xoff.pokepetal.dto;
 
 import lombok.*;
 
@@ -7,8 +7,8 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PokemonBusiness {
-
+@ToString
+public class PokemonDto {
     private Long id;
     private String name;
     private String type1;
