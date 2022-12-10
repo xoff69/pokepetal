@@ -2,10 +2,9 @@ package com.xoff.pokepetal.service;
 
 import com.xoff.pokepetal.model.Pokemon;
 import com.xoff.pokepetal.repository.PokePetalRepository;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

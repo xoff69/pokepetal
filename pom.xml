@@ -18,7 +18,7 @@
 		<java.version>19</java.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<lombok.version>1.18.24</lombok.version>
-
+		<commoncsv.version>1.9.0</commoncsv.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -67,10 +67,17 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.9.0</version>
 		</dependency>
 	</dependencies>
 
