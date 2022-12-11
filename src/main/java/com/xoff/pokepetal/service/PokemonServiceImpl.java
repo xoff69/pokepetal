@@ -58,11 +58,9 @@ public class PokemonServiceImpl implements PokemonService {
     @Override
     public PokemonDto create(PokemonDto pokemonDto) {
         Pokemon pokemonToSave = PokemonMapper.INSTANCE.pokemonDto2Pokemon(pokemonDto);
-
         Pokemon pokemonSaved = pokemonRepository.saveAndFlush(pokemonToSave);
         return PokemonMapper.INSTANCE.pokemon2PokemonDto(pokemonSaved);
     }
-
 
     @Transactional
     @Override

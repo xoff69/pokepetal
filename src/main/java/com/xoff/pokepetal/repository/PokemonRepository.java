@@ -15,4 +15,5 @@ public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
 
     @Override
     void deleteById(Long id);
+
 }

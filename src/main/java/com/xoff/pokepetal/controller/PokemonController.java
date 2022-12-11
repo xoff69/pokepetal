@@ -35,15 +35,16 @@ public class PokemonController {
 
     }
 
-    @PostMapping("/pokemons")
-    public ResponseEntity<PokemonDto> createPokemon(@RequestBody PokemonDto pokemonDto) {
-        if (pokemonDto.getId() != null && pokemonDto.getId() != 0) {
-            PokemonDto pokemonDtoSearch = pokemonService.findPokemonById(pokemonDto.getId());
-            if (pokemonDtoSearch!=null) {
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
+    @PostMapping("/pokemons/{id}")
+    public ResponseEntity<PokemonDto> createPokemon(@RequestBody PokemonDto pokemonDto, @PathVariable Long id) {
+
+        PokemonDto pokemonDtoSearch = pokemonService.findPokemonById(id);
+        if (pokemonDtoSearch != null) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        // does not exist or id = null
+
+        // does not exist
+        pokemonDto.setId(id);
         PokemonDto pokemonDtoSaved = pokemonService.create(pokemonDto);
         return new ResponseEntity<PokemonDto>(pokemonDtoSaved, HttpStatus.CREATED);
 

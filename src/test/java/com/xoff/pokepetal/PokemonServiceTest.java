@@ -19,6 +19,7 @@ public class PokemonServiceTest {
     public void testCreateFindUpdateDeleteFind() {
 
         Pokemon pokemon = new Pokemon();
+        pokemon.setId(100L);
         pokemon.setName("Albert");
         pokemon = pokemonRepository.save(pokemon);
         Assertions.assertThat(pokemon.getId() != null);

@@ -107,10 +107,15 @@ public class PokemonControllerTest {
         long idPokemon = 23;
 
         PokemonDto pokemonCreate = new PokemonDto();
-        pokemonCreate.setId(0L);
         pokemonCreate.setName("Bob");
         pokemonCreate.setType1("t1");
         pokemonCreate.setType2("t2");
+
+        // sans id
+        PokemonDtoCreationTest pokemonCreationTest = new PokemonDtoCreationTest();
+        pokemonCreationTest.setName("Bob");
+        pokemonCreationTest.setType1("t1");
+        pokemonCreationTest.setType2("t2");
 
         PokemonDto pokemonCreatedOrUpdate = new PokemonDto();
         pokemonCreatedOrUpdate.setId(idPokemon);
@@ -120,12 +125,12 @@ public class PokemonControllerTest {
 
         Mockito.when(pokemonService.create(pokemonCreate)).thenReturn(pokemonCreatedOrUpdate);
         Mockito.when(pokemonService.update(idPokemon, pokemonCreatedOrUpdate)).thenReturn(pokemonCreatedOrUpdate);
-        Mockito.when(pokemonService.findPokemonById(idPokemon)).thenReturn(pokemonCreatedOrUpdate);
+        Mockito.when(pokemonService.findPokemonById(idPokemon)).thenReturn(null);
 
-        mockMvc.perform(post("/pokemons").content(asJsonString(pokemonCreate)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
+        mockMvc.perform(post("/pokemons/"+ idPokemon).content(asJsonString(pokemonCreationTest)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
         mockMvc.perform(put("/pokemons/" + idPokemon).content(asJsonString(pokemonCreatedOrUpdate)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-
-        mockMvc.perform(post("/pokemons").content(asJsonString(pokemonCreatedOrUpdate)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isConflict());
+        Mockito.when(pokemonService.findPokemonById(idPokemon)).thenReturn(pokemonCreatedOrUpdate);
+        mockMvc.perform(post("/pokemons/" + idPokemon).content(asJsonString(pokemonCreationTest)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isConflict());
 
     }
 }

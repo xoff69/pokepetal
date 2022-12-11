@@ -3,19 +3,48 @@
 Hypotheses et remarques:
 - j'ai considere qu'il fallait lire les donnees systematiquement sur l'url du fichier csv et non pas mettre dans l 'application le fichier csv
 - l'url est stockee dans le fichier application.yml
-- projet construit avec springboot 3.0 et java 19
-- J'ai utilise le pattern DTO pour les pokemon
+- projet construit avec springboot 3.0 et java 19, usage de lombok
 - Le repertoire postman contient mes tests postman realises sur l url localhost
-- base de donnees h2 en memoire
-
+- base de donnees h2 en memoire, les id de la table pokemon sont pris soit sur les url, soit dans le fichier csv
+ie pas de generation de l id
+- pour post et put , si l id est present dans le body aussi, il n est pas utilise, c est celui de  l url qui prevaut
+- pas de champ obligatoire a part les id
 
 VERBES: (Pour les codes retour, je m appuie sur https://www.restapitutorial.com/lessons/httpmethods.html)
-- GET  http://localhost:8080/pokemons/id : cherche un pokemon par id, 200 si trouve, 404 sinon
-- GET  http://localhost:8080/pokemons?page=5&size=3:  liste des pokemons par page [numero de page, et nombre d items par page], renvoie la liste des pokemons de la page + des meta infos+stat ok 200
-- DELETE  http://localhost:8080/pokemons/id : efface un pokemon sur son id, no content si trouve (pas de body) , 404 sinon
-- POST  http://localhost:8080/pokemons + body au format json, 201 si created,  409 - conflit si existe deja (en se basant sur l id)
-- PUT http://localhost:8080/pokemons/21 + body au format json  200 si modifie, 404 si non trouve
 
+- GET  http://localhost:8080/pokemons/{id} : cherche un pokemon par id, 200 si trouve+le contenu, 404 sinon
+- GET  http://localhost:8080/pokemons?page={numeropage}&size={nb items par page}:  liste des pokemons par page [numero de page, et nombre d items par page], renvoie la liste des pokemons de la page + des meta infos+stat ok 200
+- DELETE  http://localhost:8080/pokemons/{id} : efface un pokemon sur son id, no content si trouve (pas de body) , 404 sinon
+- POST  http://localhost:8080/pokemons/{id} + body au format json, 201 si created,  409 - conflit si existe deja (en se basant sur l id present sur l url)
+  {
+  "name": "nouveau pokemon fffffffffff",
+  "type1": "Normal",
+  "type2": "Flying",
+  "total": 262,
+  "hp": 40,
+  "attack": 60,
+  "defense": 30,
+  "soAtk": 31,
+  "spDef": 31,
+  "speed": 70,
+  "generation": 1,
+  "legendary": false
+  }
+- PUT http://localhost:8080/pokemons/{id} + body au format json  200 si modifie, 404 si non trouve
+  {
+  "name": "nouveau pokemon fffffffffff",
+  "type1": "Normal",
+  "type2": "Flying",
+  "total": 262,
+  "hp": 40,
+  "attack": 60,
+  "defense": 30,
+  "soAtk": 31,
+  "spDef": 31,
+  "speed": 70,
+  "generation": 1,
+  "legendary": false
+  }
 Tests unitaires en place:
 - Application: controller non null
 - Test controller:
@@ -23,6 +52,7 @@ Tests unitaires en place:
   - GET de tous les pokemons pagines
   - POST cree un pokemon et Put update
   - DELETE efface un pokemon
+- test couche de service: les methodes principales
 - CSV reader
 
 RAPPEL DES INSTRUCTIONS:
