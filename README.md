@@ -9,12 +9,12 @@ Hypotheses et remarques:
 - base de donnees h2 en memoire
 
 
-VERBES:
-- GET  http://localhost:8080/pokemons/id : cherche un pokemon par id, 302 si trouve, 404 sinon
-- GET  http://localhost:8080/pokemons?page=5&size=3:  liste des pokemons par page [numero de page, et nombre d items par page], renvoie la liste des pokemons de la page + des meta infos
-- DELETE  http://localhost:8080/pokemons/id : efface un pokemon sur son id, 204 si trouve (no content),404 sinon
-- POST  http://localhost:8080/pokemons + body au format json, 201 si created,  400 si probleme (exemple id present dans le body)
-- PUT http://localhost:8080/pokemons/21 + body au format json  200 si modifie, 404 si non trouvee
+VERBES: (Pour les codes retour, je m appuie sur https://www.restapitutorial.com/lessons/httpmethods.html)
+- GET  http://localhost:8080/pokemons/id : cherche un pokemon par id, 200 si trouve, 404 sinon
+- GET  http://localhost:8080/pokemons?page=5&size=3:  liste des pokemons par page [numero de page, et nombre d items par page], renvoie la liste des pokemons de la page + des meta infos+stat ok 200
+- DELETE  http://localhost:8080/pokemons/id : efface un pokemon sur son id, no content si trouve (pas de body) , 404 sinon
+- POST  http://localhost:8080/pokemons + body au format json, 201 si created,  409 - conflit si existe deja (en se basant sur l id)
+- PUT http://localhost:8080/pokemons/21 + body au format json  200 si modifie, 404 si non trouve
 
 Tests unitaires en place:
 - Application: controller non null

@@ -80,7 +80,7 @@ public class PokemonControllerTest {
 
         Mockito.when(pokemonService.findPokemonById(idPokemon)).thenReturn(pokemon);
 
-        mockMvc.perform(get("/pokemons/" + idPokemon)).andExpect(status().isFound()).andExpect(content().string(containsString("Bob")));
+        mockMvc.perform(get("/pokemons/" + idPokemon)).andExpect(status().isOk()).andExpect(content().string(containsString("Bob")));
 
         mockMvc.perform(get("/pokemons/" + (idPokemon + 1))).andExpect(status().isNotFound());
     }
@@ -123,8 +123,9 @@ public class PokemonControllerTest {
         Mockito.when(pokemonService.findPokemonById(idPokemon)).thenReturn(pokemonCreatedOrUpdate);
 
         mockMvc.perform(post("/pokemons").content(asJsonString(pokemonCreate)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
-
         mockMvc.perform(put("/pokemons/" + idPokemon).content(asJsonString(pokemonCreatedOrUpdate)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
+        mockMvc.perform(post("/pokemons").content(asJsonString(pokemonCreatedOrUpdate)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isConflict());
 
     }
 }
