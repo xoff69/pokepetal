@@ -8,7 +8,7 @@ Hypotheses et remarques:
 - base de donnees h2 en memoire, les id de la table pokemon sont pris soit sur les url, soit dans le fichier csv
 ie pas de generation de l id
 - pour post et put , si l id est present dans le body aussi, il n est pas utilise, c est celui de  l url qui prevaut
-- pas de champ obligatoire a part les id
+- pas de champ obligatoire a part les id sur les url, un pokemon peut donc etre cree avec un nom vide
 
 VERBES: (Pour les codes retour, je m appuie sur https://www.restapitutorial.com/lessons/httpmethods.html)
 

@@ -16,7 +16,7 @@ public class Pokemon {
     @Column(name = "POKEMON_ID", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "NAME", unique = true)
+    @Column(name = "NAME")
     private String name;
 
     @Column(name = "TYPE1")
